@@ -14,6 +14,8 @@ cross.addEventListener('click',()=>{
     sidemenu.classList.add("adan");
     over.style.display="none";
 });
+// ----- Desktop Zoom Blocking -----
+
 // Disable Ctrl + Scroll Zoom
 document.addEventListener("wheel", function (e) {
     if (e.ctrlKey) {
@@ -21,23 +23,28 @@ document.addEventListener("wheel", function (e) {
     }
 }, { passive: false });
 
-// Disable Ctrl + (+ - 0) Zoom
+// Disable Ctrl + (+ - 0)
 document.addEventListener("keydown", function (e) {
     if (e.ctrlKey && (
         e.key === "+" ||
         e.key === "-" ||
-        e.key === "=" || // for "+" without shift
+        e.key === "=" ||
         e.key === "0"
     )) {
         e.preventDefault();
     }
 });
 
-// Disable pinch zoom (trackpads)
-document.addEventListener("touchmove", function (e) {
-    if (e.scale !== 1) {
-        e.preventDefault();
+// ----- Mobile Pinch Zoom Blocking -----
+
+document.addEventListener('touchstart', function (event) {
+    if (event.touches.length > 1) {
+        event.preventDefault();  // Block pinch
     }
 }, { passive: false });
 
-
+document.addEventListener('touchmove', function (event) {
+    if (event.touches.length > 1) {
+        event.preventDefault();  // Block pinch
+    }
+}, { passive: false });
