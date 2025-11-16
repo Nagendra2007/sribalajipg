@@ -14,4 +14,30 @@ cross.addEventListener('click',()=>{
     sidemenu.classList.add("adan");
     over.style.display="none";
 });
+// Disable Ctrl + Scroll Zoom
+document.addEventListener("wheel", function (e) {
+    if (e.ctrlKey) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+// Disable Ctrl + (+ - 0) Zoom
+document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey && (
+        e.key === "+" ||
+        e.key === "-" ||
+        e.key === "=" || // for "+" without shift
+        e.key === "0"
+    )) {
+        e.preventDefault();
+    }
+});
+
+// Disable pinch zoom (trackpads)
+document.addEventListener("touchmove", function (e) {
+    if (e.scale !== 1) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
 
