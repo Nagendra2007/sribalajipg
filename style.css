@@ -1,198 +1,58 @@
-body{
-    background-color: #F8F4E1;
-    overflow-x: hidden;   
-    margin-top: 45px;
-}
-.nav_bar{
-    top : 0px;
-    left : 0px;
-    position : fixed;
-    height: 45px;
-    width : 100%;
-    background-color: #543310;
-    display : flex;
-    align-items: center;
-    z-index : 999;
-}
-#hamburger{
-    color : #AF8F6F;
-    font-size: 30px;
-    margin-left : 10px;
-    cursor : pointer; 
-}
-.overlay{
-    width : 100%;
-    height : 100%;
-    inset : 0;
-    z-index : 9999;
-    background-color: transparent;
-    backdrop-filter: blur(2px);
-    position : fixed;
-    display : none; 
-}
-.sidemenu{
-    width : 45%;
-    background-color: #AF8F6F;
-    height : 100%;
-}
-.option{
-    width : 100%;
-    height: 45px;
-    font-size: 22px;
-    color : #543310;
-    font-family:  "Arima";
-    display : flex;
-    align-items: center;
-}
-.option:hover{
-    backdrop-filter: blur(4px);
-    background-color: rgba(255,255,255,0.08);
-}
-#into{
-    display : flex;
-    justify-content: flex-end;
-    align-items: center;
-    font-size: 24px;
-    height: 45px;
-}
-#cross{
-   padding-right :8px;
-   color : #543310;
-   cursor : pointer;
-}
-.sideanim{
-    animation : goback 0.45s linear 0s 1;
-}
-@keyframes goback {
-    from {transform : translateX(-100%)}
-    to {transform : translateX(0%)}
-}
-.option > i{
-    position : relative ;
-    bottom : 1.8px;
-}
-.search{
-    width : 100%;
-    display : flex;
-    justify-content: center;
-    align-items : center;
-    margin-top : 80px;
-}
-.searchmembers{
-    width : 70%;
-    height : 40px;
-    padding-left : 35px;
-    border-radius : 15px;
-    background-color: rgba(255,255,255,0.6);
-    border : 2px solid #543310;
-}
-#glass{
-    position : relative;
-    left : 30px;
-    color : #543310;
-}
-.searchmembers:focus{
-    border : 2px solid #543310;
-    outline : 0px solid white;
-}
-.searchmembers::placeholder{
-    color : #543310;
-}
-.members{
-    display : inline-block;
-    margin-top : 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding-left: 20px;
-    font-size: 25px;
-    border-radius : 15px;
-    color : #543310;
-    padding-right : 20px;
-    background-color: rgba(255,255,255,0.4);
-    backdrop-filter: blur(5px);
-    font-weight: 600;
-}
-.list{
-    width : 90%;
-    height : 100%;
-    background-color: transparent;
-     border-radius : 20px;
-     font-family: "Momo Trust Display";
-     color : #543310;
-     padding-top : 20px;
-}
-.listcontainer{
-    width : 100%;
-    height : 600px;
-    display : flex;
-    justify-content: center;
-    margin-top: 30px;
-    overflow-y: scroll;
-   
-}
-body::-webkit-scrollbar {        /* Chrome, Edge, Safari */
-    display: none;
-}
-.list::-webkit-scrollbar{
-    display : none;
-}
-h2{
-    display : inline-block;
-}
-.list>div{
-    background-color: rgba(154, 111, 73, 0.6);
-    padding-left : 20px;
-    display : flex;
-    flex-direction: column;
-    border-radius : 15px;
-    height: 60px;
-    padding-top : 10px;
-    padding-bottom : 10px;
-    justify-content: space-between;
-    margin-bottom : 15px;
-    padding-right : 20px;
-}
-*{
-    margin : 0px;
-    padding : 0px;
-}
-.listcontainer::-webkit-scrollbar{
-    display  : none;
-}
-.check{
-    display : flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.check>button{
-    width : 60px;
-    height: 30px;
-    border-radius: 8px;
-    border : 1px solid black;
-    background-color: #543310;
-    color : white;
-    cursor : pointer;
-}
-.announce{
-    width : 100%;
-    height: 400px;
-    display : flex;
-    justify-content: center;
-    align-items: center;
-}
-.announcments{
-    width : 90%;
-    border-radius: 15px;
-    height: 300px;
-    border : 2px dotted black;
-}
-.annouoverlay{
-    height: 100%;
-    width : 100%;
-    border-radius : 15px;
-    font-size: 110px;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color : #543310;
-}
+let cross = document.querySelector('#cross');
+let sidemenu = document.querySelector('.sidemenu');
+let overlay = document.querySelector('.overlay');
+let ham = document.querySelector("#hamburger");
+let trail = document.querySelector('.checktime');
+let announce = document.querySelector('.annouoverlay');
+let page1 = document.querySelector('#page1');
+let page2 = document.querySelector('#page2');
+let page3 = document.querySelector('#page3');
+let pages = document.querySelectorAll('.page')
+let page4 = document.querySelector('#page4');
+let page5 = document.querySelector('#page5')
+ham.addEventListener('click',()=>{
+        sidemenu.classList.add("sideanim");
+        overlay.style.display="block"
+})
+ cross.addEventListener('click',()=>{
+       overlay.style.display="none";
+ });
+ let pageopen=(e)=>{
+      let currentpage = e.target;
+      let id = e.target.getAttribute("id");
+              if(id==="foodmenu"){
+                  pages.forEach(page=>{
+                        page.style.display="none";
+                  });
+                  page2.style.display="block";
+                  overlay.style.display="none";
+              }
+              if(id==="mytimetable"){
+                   pages.forEach(page=>{
+                        page.style.display="none";
+                  });
+                  page3.style.display="block"
+                  overlay.style.display="none";
+              }
+              if(id==="home"){
+                  location.reload();
+              }
+              if(id==="profile"){
+                   pages.forEach(page=>{
+                        page.style.display="none";
+                  });
+                  page4.style.display="block";
+                  overlay.style.display="none";
+              }
+              if(id==="contactus"){
+                  pages.forEach(page=>{
+                        page.style.display="none";
+                  });
+                  page5.style.display="block";
+                  overlay.style.display="none";
+              }
+ }
+ let options = document.querySelectorAll('.option');
+ options.forEach(option=>{
+      option.addEventListener('click',pageopen);
+ });
